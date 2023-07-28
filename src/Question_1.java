@@ -10,6 +10,7 @@ public class Question_1 {
 
             //Iterating Through Entire Array
             for (int i = 0; i < InputArray.length - 1; i++) {
+                //If 0 is found
                 if (InputArray[LeftPointer] == 0) {
                     while (LeftPointer < RightPointer) {
                         //Swapping Two elements of the array
@@ -27,6 +28,7 @@ public class Question_1 {
                         break;
                     }
                 } else {
+                    //If Zero is not found
                     LeftPointer++;
                 }
             }

@@ -40,7 +40,7 @@ public class Question_1 {
 
     public static void main(String[] args) {
         int[] InputArray = new int[] { 1, 2, -4, 0, -1, 0, 3, 7, 0, 5, 0, 1, -1, 0 };
-        System.out.println("Input Array - " + Arrays.toString(InputArray));
-        System.out.println("Output Array - " + Arrays.toString(RearrangingArray(InputArray)));
+        System.out.println("Input Array - " + Arrays.toString(InputArray)); //Input - 1, 2, -4, 0, -1, 0, 3, 7, 0, 5, 0, 1, -1, 0
+        System.out.println("Output Array - " + Arrays.toString(RearrangingArray(InputArray))); //Expected Output - 1, 2, -4, -1, -1, 1, 3, 7, 5, 0, 0, 0, 0, 0
     }
 }

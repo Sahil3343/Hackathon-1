@@ -13,22 +13,20 @@ public class Question_1 {
                 //If 0 is found
                 if (InputArray[LeftPointer] == 0) {
                     while (LeftPointer < RightPointer) {
-                        //Swapping Two elements of the array
+                        //Swapping Two elements of the array If the Right pointer index is 0
                         if (InputArray[RightPointer] != 0) {
                             InputArray[LeftPointer] = InputArray[RightPointer];
                             InputArray[RightPointer] = 0;
+                            //Decrementing RightPointer & Incrementing LeftPointer
                             RightPointer--;
                             LeftPointer++;
+                            break;
                         } else {
                             RightPointer--;
                         }
                     }
-
-                    if (LeftPointer < RightPointer) {
-                        break;
-                    }
                 } else {
-                    //If Zero is not found
+                    //If Zero is not found. Incrementing LeftPointer
                     LeftPointer++;
                 }
             }

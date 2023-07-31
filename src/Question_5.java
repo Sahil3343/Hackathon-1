@@ -20,32 +20,35 @@ public class Question_5 {
 
     private static void FirstSecondPlace(String[][] InputMatch, int[][] InputGoals) {
         try {
+            //Initializing Maps
             HashMap<String, Integer> TeamWinning = new HashMap<>();
             HashMap<String, Integer> GoalDifference = new HashMap<>();
 
-            TeamWinning.put(A, 0);
-            TeamWinning.put(B, 0);
-            TeamWinning.put(C, 0);
-            TeamWinning.put(D, 0);
-
-            GoalDifference.put(A, 0);
-            GoalDifference.put(B, 0);
-            GoalDifference.put(C, 0);
-            GoalDifference.put(D, 0);
-
-//        TeamWinning.put(MANUTD, 0);
-//        TeamWinning.put(ARSENAL, 0);
-//        TeamWinning.put(LYON, 0);
-//        TeamWinning.put(FCBARCA, 0);
+//            TeamWinning.put(A, 0);
+//            TeamWinning.put(B, 0);
+//            TeamWinning.put(C, 0);
+//            TeamWinning.put(D, 0);
 //
-//        GoalDifference.put(MANUTD, 0);
-//        GoalDifference.put(ARSENAL, 0);
-//        GoalDifference.put(LYON, 0);
-//        GoalDifference.put(FCBARCA, 0);
+//            GoalDifference.put(A, 0);
+//            GoalDifference.put(B, 0);
+//            GoalDifference.put(C, 0);
+//            GoalDifference.put(D, 0);
 
+            TeamWinning.put(MANUTD, 0);
+            TeamWinning.put(ARSENAL, 0);
+            TeamWinning.put(LYON, 0);
+            TeamWinning.put(FCBARCA, 0);
+
+            GoalDifference.put(MANUTD, 0);
+            GoalDifference.put(ARSENAL, 0);
+            GoalDifference.put(LYON, 0);
+            GoalDifference.put(FCBARCA, 0);
+
+            //Iterating Matches List
             for (int i = 0; i < InputMatch.length; i++) {
                 String[] CurrentMatch = InputMatch[i];
                 int[] CurrentScore = InputGoals[i];
+                //Iterating match to find winner, loser, tie
                 for (int j = 0; j < CurrentMatch.length - 1; j++) {
                     String WinnerTeam = "";
                     String LoserTeam = "";
@@ -68,7 +71,7 @@ public class Question_5 {
                         LoserTeam = CurrentMatch[j];
                         TieFlag = false;
                     } else {
-                        //Tie
+                        //Tie Condition
                         WinnerScore = CurrentScore[j];
                         LoserScore = CurrentScore[j + 1];
                         WinnerTeam = CurrentMatch[j];
@@ -112,6 +115,7 @@ public class Question_5 {
                     MaxScore = Score;
                     FirstPlace = Key;
                 } else if (Score == MaxScore)  {
+                    //If Score and MaxScore are the same then looking at Goal Difference.
                     if (GoalDifference.get(FirstPlace) > GoalDifference.get(Key)) {
                         SecondPlace = Key;
                     } else {
@@ -130,23 +134,23 @@ public class Question_5 {
             System.out.println("First Place - " + FirstPlace);
             System.out.println("Second Place - " + SecondPlace);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            System.out.println(Arrays.toString(exception.getStackTrace()));
         }
     }
 
     public static void main(String[] args) {
-        //{ MANUTD, ARSENAL }, { LYON, MANUTD }, { FCBARCA, LYON },
-        //            { FCBARCA, ARSENAL }, { MANUTD, FCBARCA }, { ARSENAL, LYON }, { ARSENAL, MANUTD }, { MANUTD, LYON }, { ARSENAL, FCBARCA },
-        //            { LYON, FCBARCA }, { LYON, ARSENAL }, { FCBARCA, MANUTD }}
-        String[][] InputMatch = new String[][] {{ A, B }, { A, C }, { A, D },
-                { B, A }, { B, C }, { B, D }, { C, A }, { C, B }, { C, D },
-                { D, A }, { D, B }, { D, C }};
+          String[][] InputMatch = new String[][] {{ MANUTD, ARSENAL }, { LYON, MANUTD }, { FCBARCA, LYON },
+                    { FCBARCA, ARSENAL }, { MANUTD, FCBARCA }, { ARSENAL, LYON }, { ARSENAL, MANUTD }, { MANUTD, LYON }, { ARSENAL, FCBARCA },
+                    { LYON, FCBARCA }, { LYON, ARSENAL }, { FCBARCA, MANUTD }};
+//        String[][] InputMatch = new String[][] {{ A, B }, { A, C }, { A, D },
+//                { B, A }, { B, C }, { B, D }, { C, A }, { C, B }, { C, D },
+//                { D, A }, { D, B }, { D, C }};
 
-        // { { 8, 2 }, { 1, 2 }, { 0, 0 }, { 5, 1 }, { 3, 1 }, { 6, 0 }, { 0, 0 },
-        //            { 4, 2 }, { 2, 2 }, { 0, 3 }, { 1, 0 }, { 0, 1 }}
-        int[][] InputGoals = new int[][] { { 3, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 4, 0 }, { 0, 0 }, { 0, 0 },
-                { 0, 0 }, { 1, 0 }, { 3, 0 }, { 0, 0 }, { 0, 0 }};
+        int[][] InputGoals = new int[][] { { 8, 2 }, { 1, 2 }, { 0, 0 }, { 5, 1 }, { 3, 1 }, { 6, 0 }, { 0, 0 },
+                    { 4, 2 }, { 2, 2 }, { 0, 3 }, { 1, 0 }, { 0, 1 }};
+//        int[][] InputGoals = new int[][] { { 3, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 4, 0 }, { 0, 0 }, { 0, 0 },
+//                { 0, 0 }, { 1, 0 }, { 3, 0 }, { 0, 0 }, { 0, 0 }};
 
-        FirstSecondPlace(InputMatch, InputGoals);
+        FirstSecondPlace(InputMatch, InputGoals); //Expected output - manutd, fcbarca
     }
 }

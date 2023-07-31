@@ -1,12 +1,10 @@
 public class Question_2 {
 
-
-
     private static String ZipString(String InputString) {
         try {
             //Checking if the string has only 1 character
             if (InputString.length() == 1) {
-                System.out.println("Output String - " + InputString + 1);
+                return InputString + 1;
             }
 
             int CharCount = 0;
@@ -14,6 +12,7 @@ public class Question_2 {
 
             //Iterating the string
             for (int i = 0; i < InputString.length() - 1; i++) {
+                //Getting Current Character
                 char CurrentChar = InputString.charAt(i);
 
                 //Checking if the next char is same as CurrentChar
@@ -31,14 +30,14 @@ public class Question_2 {
             return OutputString.toString();
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
-            return "";
+            return "Error";
         }
     }
 
     public static void main(String[] args) {
         String InputString = "aabbbbbttttdlll";  //aabbbbbttttdlll
-        System.out.println("Input String - " + InputString);
-        System.out.println("Output String - " + ZipString(InputString));
+        System.out.println("Input String - " + InputString); //Input - aabbbbbttttdlll
+        System.out.println("Output String - " + ZipString(InputString)); //Expected Output - a2b5t4d1l3
 
     }
 }

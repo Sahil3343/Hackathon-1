@@ -7,38 +7,35 @@ public class Question_3 {
 
     private static String TruckQueue(int[] Trucks) {
         try {
+            //Initializing PerpendicularRoad and FinalQueue
             Stack<Integer> PerpendicularRoad = new Stack<>();
             Queue<Integer> FinalQueue = new PriorityQueue<>();
 
+            //Retrieving smallest truck for setting starting point
             int MinTruck = Arrays.stream(Trucks).min().getAsInt();
             int CurrentTruck = MinTruck;
 
             //Iterating through the array
             for (int i = 0; i < Trucks.length; i++) {
-                //Searching for match
+                //Searching for match using CurrentTruck. If found, then adding it to the FinalQueue
+                //and incrementing CurrentTruck
                 if (Trucks[i] == CurrentTruck) {
                     FinalQueue.add(Trucks[i]);
                     CurrentTruck++;
 
-                    //Checking the perpendicular road for any match
+                    //Checking the perpendicular road for any match (If PerpendicularRoad not empty)
                     while (!PerpendicularRoad.isEmpty() && PerpendicularRoad.peek() == CurrentTruck) {
                         FinalQueue.add(PerpendicularRoad.pop());
                         CurrentTruck++;
                     }
 
-                } else if (!PerpendicularRoad.isEmpty()) {
-                    if (PerpendicularRoad.lastElement() == CurrentTruck) {
-//                        FinalQueue.add(PerpendicularRoad.lastElement());
-//                        PerpendicularRoad.pop();
-//                        CurrentTruck++;
-                    } else {
-                        PerpendicularRoad.add(Trucks[i]);
-                    }
                 } else {
+                    //As CurrentTruck not equal to Trucks[i] appending the truck to the perpendicular road
                     PerpendicularRoad.add(Trucks[i]);
                 }
             }
 
+            //If PerpendicularRoad empty means FinalQueue is completely populated
             if (PerpendicularRoad.isEmpty()) {
                 return "Yes";
             } else {
@@ -46,12 +43,13 @@ public class Question_3 {
             }
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
-            return "";
+            return "Error";
         }
     }
 
     public static void main(String[] args) {
-        int[] Trucks = new int[] { 4, 1, 5, 3, 2 };
-        System.out.println(TruckQueue(Trucks));
+        int[] Trucks = new int[] { 5, 1, 2, 4, 3 };
+        System.out.println("Input List - " + Arrays.toString(Trucks)); //Input - 5, 1, 2, 4, 3
+        System.out.println(TruckQueue(Trucks)); //Expected Output - Yes
     }
 }
